@@ -47,6 +47,6 @@ module.exports = (robot) ->
         (error, response, body) ->
           if response.statusCode == 200
             document = cheerio.load(body)
-            title = document('title').text().trim()
+            title = document('title').text().trim().replace(/(\r\n|\n|\r)/gm,"")
             msg.send "#{title}"
       )
